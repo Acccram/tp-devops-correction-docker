@@ -28,12 +28,8 @@ jobs:
 
       - name: SonarCloud Analysis
         working-directory: simple-api
-        run: mvn -B verify sonar:sonar \
-          -Dsonar.projectKey=Acccram_tp-devops-correction-docker \
-          -Dsonar.organization=acccram \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          --file ./pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Acccram_tp-devops-correction-docker -Dsonar.organization=acccram -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./pom.xml
+
   
 
   build-and-push-docker-image:
