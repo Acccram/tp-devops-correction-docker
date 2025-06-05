@@ -29,7 +29,7 @@ jobs:
                                                         # If pom.xml is in the root, remove "--file ./simple-api/pom.xml"
                                                         # and just use "mvn clean verify"
                                                         # ... (name, on, and test-backend job remain the same) ...
-                                                        
+
   build-and-push-docker-image:
     needs: test-backend # Ensures this job runs only if 'test-backend' succeeds
     runs-on: ubuntu-24.04
@@ -57,6 +57,6 @@ jobs:
       - name: Build and push httpd image
         uses: docker/build-push-action@v6
         with:
-          context: ./httpd # Path to the Dockerfile for httpd (adjust if needed)
+          context: ./http-server # Path to the Dockerfile for httpd (adjust if needed)
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-httpd:latest # Choose an appropriate name
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: ${{ github.ref == 'refs/heads/main' }}d 
