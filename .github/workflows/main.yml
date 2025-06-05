@@ -26,6 +26,16 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify --file ./simple-api/pom.xml # Runs the Maven command.
 
+      - name: SonarCloud Analysis
+        working-directory: simple-api
+        run: mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=acccram \
+          -Dsonar.organization=Acccram \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          --file ./pom.xml
+  
+
   build-and-push-docker-image:
     if: github.ref == 'refs/heads/main' # This job only runs on main
     needs: test-backend # Ensures this job runs only if 'test-backend' succeeds
