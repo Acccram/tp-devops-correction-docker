@@ -1,0 +1,10 @@
+- name: Run proxy container
+  docker_container:
+    name: proxy
+    image: httpd:latest
+    networks:
+      - name: app-network
+    published_ports:
+      - "80:80"
+    state: started
+    restart_policy: always

@@ -1,0 +1,15 @@
+- name: Run API container
+  docker_container:
+    name: myapi
+    image: akram/simple-api
+    networks:
+      - name: app-network
+    env:
+      DB_HOST: mydb
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+      DB_NAME: mydatabase
+    published_ports:
+      - "8080:8080"
+    state: started
+    restart_policy: always
